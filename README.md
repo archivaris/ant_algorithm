@@ -20,7 +20,8 @@ git config core.fileMode false**
 
 **commits:**
 
-* [FEAT]commit_name
-* [MERGE]commit_name
-* [FIX]commit_name
+* [FEAT]commit_name  -feature completed
+* [MERGE]commit_name -merge 
+* [FIX]commit_name   -small fix made to existing feat
+* [WIP]commit_name   -work in progress
 

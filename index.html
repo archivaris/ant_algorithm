@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Ant</title>
+    <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Assets/JavaScript/algorithm.js"></script>
+    <script src="Assets/JavaScript/canvas.js"></script>
+    <script src="Assets/JavaScript/draw.js"></script>
+    <script src="Assets/JavaScript/ant.js"></script>
+    <script src="Assets/JavaScript/city.js"></script>
+    <script src="Assets/JavaScript/colony.js"></script>
+    <script src="Assets/JavaScript/edge.js"></script>
+    <script src="Assets/JavaScript/graph.js"></script>
+    <script src="Assets/JavaScript/tour.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+    <div class="table-debug">
+        <table class="table">
+            <caption></caption>
+            <tr>
+                <th id="table-info">
+                    Debug information
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Iterations:
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Best Path:
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="">Start</button>
+                    <button class="">End</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    <div class="row">
+    <div class="table-parameters">
+        <table class="table">
+            <caption></caption>
+            <tr>
+                <th id="table-config">
+                    Configuration
+                </th>
+            </tr>
+            <tr>
+                <td>Colony Size</td><td>
+                <select name="select-colony-size" id="colony-size">
+                    <option selected value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Max Iterations</td><td>
+                <select name ="select-iterations" id="max-iterations">
+                    <option selected value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>*More to come*</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+<div class="canvas" id="canvas">
+</div>
+
+
+</body>
+</html>
