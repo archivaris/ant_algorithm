@@ -2,7 +2,7 @@
 <html lang="">
 <head>
     <title>Ant</title>
-    <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
+    <link href="Assets/CSS/style.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Assets/JavaScript/algorithm.js"></script>
     <script src="Assets/JavaScript/canvas.js"></script>
@@ -15,72 +15,165 @@
     <script src="Assets/JavaScript/tour.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-    <div class="table-debug">
-        <table class="table">
-            <caption></caption>
+<div class="fill pad">
+    <div style="border:1px solid #ccc" id="aco-canvas"></div>
+
+    <div class="hr vpad"></div>
+    <div>
+        <table>
             <tr>
-                <th id="table-info">
-                    Debug information
-                </th>
+                <td colspan="2"><b>Debug Info</b></td>
             </tr>
-            <tr>
-                <td>
-                    Iterations:
-                </td>
+            <tr style="display:none;" class="aco-info">
+                <td>Interation: </td><td id="iteration-info"></td>
             </tr>
-            <tr>
-                <td>
-                    Best Path:
-                </td>
+            <tr style="display:none;" class="aco-info">
+                <td>Best Distance: </td><td id="best-distance"></td>
             </tr>
-            <tr>
-                <td>
-                    <button class="">Start</button>
-                    <button class="">End</button>
-                </td>
+            <tr id="aco-buttons">
+                <td colspan="2"><button id="start-search-btn">Start</button> <button id="clear-graph">Clear</button></td>
             </tr>
         </table>
-    </div>
-    </div>
-    <div class="row">
-    <div class="table-parameters">
-        <table class="table">
-            <caption></caption>
+        <br />
+        <table id="aco-params">
             <tr>
-                <th id="table-config">
-                    Configuration
-                </th>
+                <td colspan="2"><b>Configuration</b></td>
             </tr>
             <tr>
-                <td>Colony Size</td><td>
-                <select name="select-colony-size" id="colony-size">
-                    <option selected value="10">10</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
+                <td>ACO Mode: </td>
+                <td>
+                    <select id="aco-mode">
+                        <option value="acs">ACS</option>
+                        <option value="elitist">Elitist</option>
+                        <option value="maxmin" selected="selected">Max-Min</option>
+                    </select>
                 </td>
             </tr>
+            <tr style="display:none;" id="elitist-weight-input">
+                <td>Elitist Weight: </td>
+                <td>
+                    <select id="elitist-weight">
+                        <option value="0.1">0.1</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1">1</option>
+                        <option value="2" selected="selected">2</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select><br /><br />
+                </td>
+            </tr>
+            <tr class="maxmin-params">
+                <td>Max Pheromone: </td><td class="light-text">(1 * Pheromone Deposit Weight) / Best distance</td>
+            </tr>
+            <tr class="maxmin-params">
+                <td>Min Pheromone: </td><td class="light-text">Max Pheromone * Scaling Factor</td>
+            </tr>
+            <tr class="maxmin-params">
+                <td>Min Scaling Factor: </td><td>
+                <select id="min-scalar">
+                    <option value="0.0001">0.0001</option>
+                    <option value="0.001" selected="selected">0.001</option>
+                    <option value="0.01">0.01</option>
+                    <option value="0.1">0.1</option>
+                </select><br /><br />
+            </td>
+            </tr>
             <tr>
-                <td>Max Iterations</td><td>
-                <select name ="select-iterations" id="max-iterations">
-                    <option selected value="50">50</option>
+                <td>Colony Size: </td><td>
+                <select id="colony-size">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30" selected="selected">30</option>
+                    <option value="50">50</option>
                     <option value="100">100</option>
                     <option value="200">200</option>
                 </select>
+            </td>
+            </tr>
+            <tr>
+                <td>Max Iterations: </td>
+                <td>
+                    <select id="max-iterations">
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200" selected="selected">200</option>
+                        <option value="300">300</option>
+                        <option value="500">500</option>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <td>*More to come*</td>
+                <td>Alpha: </td>
+                <td>
+                    <select id="alpha">
+                        <option value="1" selected="selected">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Beta: </td>
+                <td>
+                    <select id="beta">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected="selected">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Rho: </td>
+                <td>
+                    <select id="rho">
+                        <option value="0">0</option>
+                        <option value="0.001">0.001</option>
+                        <option value="0.01">0.01</option>
+                        <option value="0.05">0.05</option>
+                        <option value="0.1" selected="selected">0.1</option>
+                        <option value="0.2">0.2</option>
+                        <option value="0.5">0.5</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Initial Pheromone: </td>
+                <td>
+                    <select id="init-pheromone">
+                        <option value="0">0</option>
+                        <option value="1" selected="selected">1</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Pheromone Deposit Weight: </td>
+                <td>
+                    <select id="pheromone-deposit-weight">
+                        <option value="1" selected="selected">1</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </td>
             </tr>
         </table>
+        <div class="clear"></div>
     </div>
 </div>
-</div>
-<div class="canvas" id="canvas">
-</div>
-
-
 </body>
 </html>
