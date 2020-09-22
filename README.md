@@ -1,6 +1,8 @@
 # ant_algorithm
 **Description:**
 path finding algorithm
+
+all credit to "http://www.theprojectspot.com/tutorial-post/ant-colony-optimization-for-hackers/10"
 <br>
 
 **file-permissions:
